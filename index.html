@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shaurya Palodkar — Portfolio</title>
+<meta name="description" content="Portfolio of Shaurya Palodkar — Full-stack developer building real-world web apps, AI assistants, and e-commerce platforms. B.Tech CSE student at ACE, Aurangabad.">
+<meta name="author" content="Shaurya Palodkar">
+<meta property="og:title" content="Shaurya Palodkar — Portfolio">
+<meta property="og:description" content="Full-stack developer building real-world web apps, AI assistants, and e-commerce platforms.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shaurya3031.github.io/portfolio15/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Shaurya Palodkar — Portfolio">
+<meta name="twitter:description" content="Full-stack developer building real-world web apps, AI assistants, and e-commerce platforms.">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 <style>
@@ -1177,6 +1186,106 @@
   }
   @keyframes loaderSpin { to { transform: rotate(360deg); } }
   @keyframes loaderPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+  /* ── BACK TO TOP BUTTON ── */
+  .back-to-top {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+    width: 46px; height: 46px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 6px 20px rgba(124,110,255,0.35);
+    opacity: 0; visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.4s, visibility 0.4s, transform 0.4s;
+  }
+  .back-to-top.visible {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .back-to-top:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 10px 30px rgba(124,110,255,0.5);
+  }
+  .back-to-top svg { width: 20px; height: 20px; fill: white; }
+
+  /* ── CURSOR GLOW ── */
+  .cursor-glow {
+    position: fixed; pointer-events: none; z-index: 9998;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,110,255,0.07) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s;
+    will-change: left, top;
+  }
+  @media (hover: none) { .cursor-glow { display: none; } }
+
+  /* ── THEME TOGGLE ── */
+  .theme-toggle {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: all 0.3s;
+    margin-left: 0.5rem;
+  }
+  .theme-toggle:hover {
+    background: rgba(124,110,255,0.12);
+    border-color: rgba(124,110,255,0.4);
+  }
+  .theme-toggle svg { width: 18px; height: 18px; fill: var(--muted); transition: fill 0.3s; }
+  .theme-toggle:hover svg { fill: var(--accent); }
+  .theme-toggle .icon-sun { display: none; }
+  .theme-toggle .icon-moon { display: block; }
+
+  /* ── LIGHT MODE ── */
+  html.light {
+    --bg: #f5f3ff;
+    --bg2: #ede9fe;
+    --surface: #e8e5f5;
+    --border: rgba(0,0,0,0.08);
+    --accent: #6d5ce7;
+    --accent2: #e84393;
+    --accent3: #00b894;
+    --text: #1a1a2e;
+    --muted: #6c6893;
+    --card-bg: rgba(255,255,255,0.7);
+  }
+  html.light nav { background: rgba(245,243,255,0.8); }
+  html.light .page-loader { background: var(--bg); }
+  html.light .hero-bg {
+    background: radial-gradient(ellipse 60% 60% at 70% 50%, rgba(109,92,231,0.1) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(232,67,147,0.06) 0%, transparent 60%);
+  }
+  html.light .hero-grid-lines {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  }
+  html.light .cursor-glow {
+    background: radial-gradient(circle, rgba(109,92,231,0.06) 0%, transparent 70%);
+  }
+  html.light .back-to-top {
+    box-shadow: 0 6px 20px rgba(109,92,231,0.25);
+  }
+  html.light .theme-toggle .icon-sun { display: block; }
+  html.light .theme-toggle .icon-moon { display: none; }
+  html.light .scroll-anim-container {
+    background: linear-gradient(145deg, rgba(255,255,255,0.95), rgba(237,233,254,0.98));
+    border-color: rgba(109,92,231,0.2);
+  }
+  html.light .scroll-anim-container .device-bar {
+    background: rgba(0,0,0,0.05);
+  }
+
+  /* ── POWERED BY LINK ── */
+  .powered-by {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    color: var(--muted); text-decoration: none;
+    font-size: 0.8rem; transition: color 0.3s;
+  }
+  .powered-by:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -1199,6 +1308,10 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <svg class="icon-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/></svg>
+    <svg class="icon-sun" viewBox="0 0 24 24"><path d="M12 18a6 6 0 100-12 6 6 0 000 12zM12 0v2m0 20v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M0 12h2m20 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+  </button>
 </nav>
 <div class="nav-overlay" id="navOverlay"></div>
 
@@ -1313,15 +1426,15 @@
       <div class="scroll-anim-body">
         <div class="dash-stats">
           <div class="stat-box">
-            <div class="stat-num">5+</div>
+            <div class="stat-num" data-target="5" data-suffix="+">0</div>
             <div class="stat-label">Projects Built</div>
           </div>
           <div class="stat-box">
-            <div class="stat-num">10+</div>
+            <div class="stat-num" data-target="10" data-suffix="+">0</div>
             <div class="stat-label">Tech Stack</div>
           </div>
           <div class="stat-box">
-            <div class="stat-num">3+</div>
+            <div class="stat-num" data-target="3" data-suffix="+">0</div>
             <div class="stat-label">Live Deploys</div>
           </div>
         </div>
@@ -1498,7 +1611,7 @@
     </h2>
     <div class="contact-box">
       <p style="color: var(--muted);">Have a project in mind? Want to collaborate or just say hi?</p>
-      <div class="contact-email">shauryapalodkar7@gmail.com</div>
+      <a href="mailto:shauryapalodkar7@gmail.com" class="contact-email" style="text-decoration:none; display:block;">shauryapalodkar7@gmail.com</a>
       <a href="https://wa.me/919922333164?text=hii" target="_blank" class="btn-primary">Send a Message</a>
       <div class="contact-links">
         <a href="tel:9922333164" class="contact-link">📞 9922333164</a>
@@ -1539,7 +1652,21 @@
     </a>
   </div>
   <p>Designed &amp; built by Shaurya Palodkar · 2026</p>
+  <p style="margin-top: 0.5rem;">
+    <a href="outro.html" class="powered-by" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Powered by BlueBracket
+    </a>
+  </p>
 </footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 4l-8 8h5v8h6v-8h5z"/></svg>
+</button>
+
+<!-- CURSOR GLOW -->
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <script>
   // ── Remove Spline watermark ──
@@ -1792,6 +1919,80 @@
     window.addEventListener('load', () => setTimeout(dismiss, 400));
     // Safety timeout: dismiss after 5s max
     setTimeout(dismiss, 5000);
+  })();
+
+  // ── Back to Top Button ──
+  (function() {
+    const btn = document.getElementById('backToTop');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+    btn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+
+  // ── Cursor Glow ──
+  (function() {
+    const glow = document.getElementById('cursorGlow');
+    if (!glow || window.matchMedia('(hover: none)').matches) return;
+    let mx = -500, my = -500, cx = -500, cy = -500;
+    document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; });
+    document.addEventListener('mouseleave', () => { glow.style.opacity = '0'; });
+    document.addEventListener('mouseenter', () => { glow.style.opacity = '1'; });
+    (function animate() {
+      cx += (mx - cx) * 0.15;
+      cy += (my - cy) * 0.15;
+      glow.style.left = cx + 'px';
+      glow.style.top = cy + 'px';
+      requestAnimationFrame(animate);
+    })();
+  })();
+
+  // ── Theme Toggle ──
+  (function() {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    // Load saved preference
+    const saved = localStorage.getItem('theme');
+    if (saved === 'light') document.documentElement.classList.add('light');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('light');
+      const isLight = document.documentElement.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+    });
+  })();
+
+  // ── Stat Counter Animation ──
+  (function() {
+    const statNums = document.querySelectorAll('.stat-num[data-target]');
+    if (!statNums.length) return;
+    const duration = 1500;
+    function animateCounter(el) {
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      const start = performance.now();
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutCubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * ease);
+        el.textContent = current + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounter(entry.target);
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    statNums.forEach(el => statObserver.observe(el));
   })();
 </script>
 </body>
