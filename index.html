@@ -217,6 +217,7 @@
     -webkit-backface-visibility: hidden;
   }
 
+
   /* Loading spinner */
   .spline-loader {
     position: absolute; inset: 0;
@@ -1496,6 +1497,41 @@
 </footer>
 
 <script>
+  // ── Remove Spline watermark ──
+  (function() {
+    const viewer = document.querySelector('spline-viewer');
+    if (!viewer) return;
+    function removeLogo() {
+      const sr = viewer.shadowRoot;
+      if (!sr) return;
+      const logo = sr.querySelector('#logo');
+      if (logo) { logo.remove(); return; }
+      // Also try to find any anchor with the spline branding
+      sr.querySelectorAll('a').forEach(a => {
+        if (a.href && a.href.includes('spline')) a.remove();
+      });
+      // Inject style to hide any remaining watermark
+      const style = document.createElement('style');
+      style.textContent = '#logo, a[href*="spline"] { display: none !important; }';
+      sr.appendChild(style);
+    }
+    // Try immediately and also after load
+    removeLogo();
+    viewer.addEventListener('load', () => setTimeout(removeLogo, 500));
+    // MutationObserver as fallback
+    const mo = new MutationObserver(() => removeLogo());
+    if (viewer.shadowRoot) mo.observe(viewer.shadowRoot, { childList: true, subtree: true });
+    else {
+      const outerMo = new MutationObserver(() => {
+        if (viewer.shadowRoot) { removeLogo(); mo.observe(viewer.shadowRoot, { childList: true, subtree: true }); outerMo.disconnect(); }
+      });
+      outerMo.observe(viewer, { childList: true, subtree: true });
+    }
+    // Final safety net
+    setTimeout(removeLogo, 2000);
+    setTimeout(removeLogo, 5000);
+  })();
+
   // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
