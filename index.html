@@ -1139,9 +1139,54 @@
     .hero-scene { display: none; }
     section { padding: 2rem 1.5rem; }
   }
+  /* ── PAGE LOADER ── */
+  .page-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    background: var(--bg);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+  .page-loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .loader-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+    animation: loaderPulse 1.5s ease-in-out infinite;
+  }
+  .loader-ring {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgba(124,110,255,0.1);
+    border-top-color: var(--accent);
+    border-right-color: var(--accent2);
+    animation: loaderSpin 0.9s linear infinite;
+  }
+  .loader-text {
+    margin-top: 1.5rem;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--muted);
+    animation: loaderPulse 1.5s 0.3s ease-in-out infinite;
+  }
+  @keyframes loaderSpin { to { transform: rotate(360deg); } }
+  @keyframes loaderPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
 </style>
 </head>
 <body>
+
+<!-- PAGE LOADER -->
+<div class="page-loader" id="pageLoader">
+  <div class="loader-logo">SP</div>
+  <div class="loader-ring"></div>
+  <div class="loader-text">Loading</div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -1731,6 +1776,22 @@
     }
 
     setTimeout(tick, 1000);
+  })();
+  // ── Page Loader Dismiss ──
+  (function() {
+    const loader = document.getElementById('pageLoader');
+    if (!loader) return;
+    function dismiss() {
+      loader.classList.add('fade-out');
+      document.body.style.overflow = '';
+      setTimeout(() => loader.remove(), 700);
+    }
+    // Hide overflow while loading
+    document.body.style.overflow = 'hidden';
+    // Dismiss on window load
+    window.addEventListener('load', () => setTimeout(dismiss, 400));
+    // Safety timeout: dismiss after 5s max
+    setTimeout(dismiss, 5000);
   })();
 </script>
 </body>
